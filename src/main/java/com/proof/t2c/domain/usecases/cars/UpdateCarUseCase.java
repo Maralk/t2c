@@ -10,9 +10,7 @@ import lombok.Value;
 
 import javax.transaction.Transactional;
 
-@Getter
-@Setter
-@Builder
+@Getter @Setter @Builder
 public class UpdateCarUseCase implements UseCase<UpdateCarUseCase.InputPort, UpdateCarUseCase.OutputPort> {
 
     // @formatter:off
@@ -45,7 +43,6 @@ public class UpdateCarUseCase implements UseCase<UpdateCarUseCase.InputPort, Upd
 
     @Getter @Setter @Builder @Value
     public static class InputPort implements UseCase.InputPort {
-        private final Integer carId;
         private final Integer id;
         private final Car data;
     }
