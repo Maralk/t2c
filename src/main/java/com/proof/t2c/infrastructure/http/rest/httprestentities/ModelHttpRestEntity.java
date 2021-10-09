@@ -15,6 +15,8 @@ public class ModelHttpRestEntity {
 
     // @formatter:off
     private Integer id;
+    private String name;
+    private BrandHttpRestEntity brand;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Europe/Madrid")
     private Date createdAt;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Europe/Madrid")
@@ -27,6 +29,8 @@ public class ModelHttpRestEntity {
         }
         return ModelHttpRestEntity.builder()
             .id(model.getId())
+            .name(model.getName())
+            .brand(BrandHttpRestEntity.fromEntity(model.getBrand()))
             .createdAt(model.getCreatedAt())
             .updatedAt(model.getUpdatedAt())
             .build();
@@ -35,6 +39,8 @@ public class ModelHttpRestEntity {
     public Model toEntity() {
         return Model.builder()
             .id(this.id)
+            .name(this.name)
+            .brand(this.brand != null ? this.brand.toEntity() : null)
             .createdAt(this.createdAt)
             .updatedAt(this.updatedAt)
             .build();

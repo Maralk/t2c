@@ -8,11 +8,11 @@ import java.util.function.Function;
 
 public class UseCaseInteractorImpl implements UseCaseInteractor {
 
-	public <RX, InputPort extends UseCase.InputPort, OutputPort extends UseCase.OutputPort> CompletableFuture<RX> execute(UseCase<InputPort, OutputPort> useCase, InputPort inputPort, Function<OutputPort, RX> presenter) {
-		return CompletableFuture
-			.supplyAsync(() -> inputPort)
-			.thenApplyAsync(useCase::execute)
-			.thenApplyAsync(presenter);
-	}
+    public <RX, InputPort extends UseCase.InputPort, OutputPort extends UseCase.OutputPort> CompletableFuture<RX> execute(UseCase<InputPort, OutputPort> useCase, InputPort inputPort, Function<OutputPort, RX> presenter) {
+        return CompletableFuture
+            .supplyAsync(() -> inputPort)
+            .thenApplyAsync(useCase::execute)
+            .thenApplyAsync(presenter);
+    }
 
 }

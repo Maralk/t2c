@@ -1,4 +1,4 @@
-package com.proof.t2c.infrastructure.http.rest.httprestentities;
+package com.proof.t2c.infrastructure.http.rest.httprestentities.reduced;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.proof.t2c.domain.entities.Car;
@@ -11,16 +11,11 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CarHttpRestEntity {
+public class ReducedCarHttpRestEntity {
 
     // @formatter:off
     private Integer id;
     private String carLicense;
-    private BrandHttpRestEntity brand;
-    private ModelHttpRestEntity model;
-    private UserHttpRestEntity owner;
-    private PurchaseHttpRestEntity purchase;
-    private SaleHttpRestEntity sale;
     private Boolean sold;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Europe/Madrid")
     private Date createdAt;
@@ -28,18 +23,13 @@ public class CarHttpRestEntity {
     private Date updatedAt;
     // @formatter:on
 
-    public static CarHttpRestEntity fromEntity(Car car) {
+    public static ReducedCarHttpRestEntity fromEntity(Car car) {
         if (car == null) {
             return null;
         }
-        return CarHttpRestEntity.builder()
+        return ReducedCarHttpRestEntity.builder()
             .id(car.getId())
             .carLicense(car.getCarLicense())
-            .brand(BrandHttpRestEntity.fromEntity(car.getBrand()))
-            .model(ModelHttpRestEntity.fromEntity(car.getModel()))
-            .owner(UserHttpRestEntity.fromEntity(car.getOwner()))
-            .purchase(PurchaseHttpRestEntity.fromEntity(car.getPurchase()))
-            .sale(SaleHttpRestEntity.fromEntity(car.getSale()))
             .sold(car.getSold())
             .createdAt(car.getCreatedAt())
             .updatedAt(car.getUpdatedAt())
@@ -50,11 +40,6 @@ public class CarHttpRestEntity {
         return Car.builder()
             .id(this.id)
             .carLicense(this.carLicense)
-            .brand(this.brand != null ? this.brand.toEntity() : null)
-            .model(this.model != null ? this.model.toEntity() : null)
-            .owner(this.owner != null ? this.owner.toEntity() : null)
-            .purchase(this.purchase != null ? this.purchase.toEntity() : null)
-            .sale(this.sale != null ? this.sale.toEntity() : null)
             .sold(this.sold)
             .createdAt(this.createdAt)
             .updatedAt(this.updatedAt)

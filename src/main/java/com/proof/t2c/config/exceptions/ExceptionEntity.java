@@ -6,8 +6,7 @@ import lombok.Setter;
 import javax.validation.ConstraintViolation;
 import java.util.Set;
 
-@Getter
-@Setter
+@Getter @Setter
 public class ExceptionEntity {
 
     private String error;

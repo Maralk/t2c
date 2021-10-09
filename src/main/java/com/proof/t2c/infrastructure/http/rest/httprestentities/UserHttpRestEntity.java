@@ -16,14 +16,9 @@ public class UserHttpRestEntity {
     // @formatter:off
     private Integer id;
     private String email;
-    private String password;
     private ShopHttpRestEntity shop;
     private String name;
     private String lastName;
-    private String idCard;
-    private String gender;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", timezone = "Europe/Madrid")
-    private Date birthdate;
     private String phone;
     private String country;
     private String province;
@@ -43,8 +38,15 @@ public class UserHttpRestEntity {
         return UserHttpRestEntity.builder()
             .id(user.getId())
             .email(user.getEmail())
-            .password(null)
             .shop(ShopHttpRestEntity.fromEntity(user.getShop()))
+            .name(user.getName())
+            .lastName(user.getLastName())
+            .phone(user.getPhone())
+            .country(user.getCountry())
+            .province(user.getProvince())
+            .town(user.getTown())
+            .zip(user.getZip())
+            .address(user.getAddress())
             .createdAt(user.getCreatedAt())
             .updatedAt(user.getUpdatedAt())
             .build();
@@ -54,6 +56,15 @@ public class UserHttpRestEntity {
         return User.builder()
             .id(this.id)
             .email(this.email)
+            .shop(this.shop != null ? this.shop.toEntity() : null)
+            .name(this.name)
+            .lastName(this.lastName)
+            .phone(this.phone)
+            .country(this.country)
+            .province(this.province)
+            .town(this.town)
+            .zip(this.zip)
+            .address(this.address)
             .createdAt(this.createdAt)
             .updatedAt(this.updatedAt)
             .build();

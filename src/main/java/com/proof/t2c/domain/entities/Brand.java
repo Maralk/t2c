@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Getter @Setter @Builder @NoArgsConstructor @AllArgsConstructor
-public class Brand {
+public class Brand extends Base {
 
     private Integer id;
 

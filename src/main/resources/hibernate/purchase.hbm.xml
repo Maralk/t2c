@@ -8,9 +8,8 @@
             <generator class="identity"/>
         </id>
         <many-to-one name="car" column="car_id" class="com.proof.t2c.domain.entities.Car" not-null="true"/>
-        <many-to-one name="previousOwner" column="previous_owner_id" class="com.proof.t2c.domain.entities.User"
-                     not-null="true"/>
-        <many-to-one name="newOwner" column="new_owner_id" class="com.proof.t2c.domain.entities.User" not-null="true"/>
+        <many-to-one name="previousOwner" column="previous_owner_id" class="com.proof.t2c.domain.entities.User" />
+        <many-to-one name="newOwner" column="new_owner_id" class="com.proof.t2c.domain.entities.User"/>
         <property name="price" type="float"/>
         <property name="date" type="timestamp" not-null="true"/>
         <property name="createdAt" type="timestamp"/>

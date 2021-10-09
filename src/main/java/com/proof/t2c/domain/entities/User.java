@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Getter @Setter @Builder @NoArgsConstructor @AllArgsConstructor
-public class User {
+public class User extends Base {
 
     private Integer id;
 
