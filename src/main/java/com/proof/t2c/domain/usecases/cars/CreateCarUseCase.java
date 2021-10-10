@@ -1,6 +1,7 @@
 package com.proof.t2c.domain.usecases.cars;
 
 import com.proof.t2c.domain.entities.Car;
+import com.proof.t2c.domain.entities.Purchase;
 import com.proof.t2c.domain.usecases.UseCase;
 import lombok.Builder;
 import lombok.Getter;
@@ -8,49 +9,67 @@ import lombok.Setter;
 import lombok.Value;
 
 import javax.transaction.Transactional;
-import java.util.Date;
 
 public class CreateCarUseCase implements UseCase<CreateCarUseCase.InputPort, CreateCarUseCase.OutputPort> {
 
-	// @formatter:off
+    // @formatter:off
     private CarRepository carRepository;
-	// @formatter:on
+    private PurchaseRepository purchaseRepository;
+    // @formatter:on
 
-	public CreateCarUseCase(
-		CarRepository carRepository
-	) {
-		this.carRepository = carRepository;
-	}
+    public CreateCarUseCase(
+        CarRepository carRepository,
+        PurchaseRepository purchaseRepository
+    ) {
+        this.carRepository = carRepository;
+        this.purchaseRepository = purchaseRepository;
+    }
 
-	@Transactional @Override
-	public OutputPort execute(InputPort inputPort) {
-		Date now = new Date();
-		Car car = Car.builder()
-			.carLicense(inputPort.getData().getCarLicense())
-			.brand(inputPort.getData().getBrand())
-			.model(inputPort.getData().getModel())
-			.owner(inputPort.getData().getOwner())
-			.createdAt(now)
-			.updatedAt(now)
-			.build();
+    @Transactional
+    @Override
+    public OutputPort execute(InputPort inputPort) {
+        Car carData = inputPort.getData();
+        Car car = Car.builder()
+            .carLicense(carData.getCarLicense())
+            .model(carData.getModel())
+            .owner(carData.getOwner())
+            .build();
 
-		return new OutputPort(this.carRepository.saveCar(car));
-	}
+        Car createdCar = this.carRepository.saveCar(car);
 
-	// @formatter:off
-	public interface CarRepository {
-		Car saveCar(Car car);
-	}
+        Purchase purchaseData = carData.getPurchase();
+        Purchase purchase = Purchase.builder()
+            .car(createdCar)
+            .previousOwner(purchaseData.getPreviousOwner())
+            .newOwner(purchaseData.getNewOwner())
+            .price(purchaseData.getPrice())
+            .date(purchaseData.getDate())
+            .build();
 
-	@Getter @Setter @Builder @Value
-	public static class InputPort implements UseCase.InputPort {
-		private final Car data;
-	}
+        Purchase createdPurchase = this.purchaseRepository.savePurchase(purchase);
+        createdCar.setPurchase(createdPurchase);
 
-	@Getter @Setter @Builder @Value
-	public static class OutputPort implements UseCase.OutputPort {
-		private final Car car;
-	}
-	// @formatter:on
+        return new OutputPort(this.carRepository.saveCar(createdCar));
+    }
+
+    // @formatter:off
+    public interface CarRepository {
+        Car saveCar(Car car);
+    }
+
+    public interface PurchaseRepository {
+        Purchase savePurchase(Purchase purchase);
+    }
+
+    @Getter @Setter @Builder @Value
+    public static class InputPort implements UseCase.InputPort {
+        private final Car data;
+    }
+
+    @Getter @Setter @Builder @Value
+    public static class OutputPort implements UseCase.OutputPort {
+        private final Car car;
+    }
+    // @formatter:on
 
 }

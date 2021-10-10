@@ -12,9 +12,6 @@ public class Car extends Base {
 
     private String carLicense;
 
-    @NotNull(message = "Por favor introduce una marca")
-    private Brand brand;
-
     @NotNull(message = "Por favor introduce un modelo")
     private Model model;
 

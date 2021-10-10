@@ -16,7 +16,6 @@ public class CarHttpRestEntity {
     // @formatter:off
     private Integer id;
     private String carLicense;
-    private BrandHttpRestEntity brand;
     private ModelHttpRestEntity model;
     private UserHttpRestEntity owner;
     private PurchaseHttpRestEntity purchase;
@@ -35,7 +34,6 @@ public class CarHttpRestEntity {
         return CarHttpRestEntity.builder()
             .id(car.getId())
             .carLicense(car.getCarLicense())
-            .brand(BrandHttpRestEntity.fromEntity(car.getBrand()))
             .model(ModelHttpRestEntity.fromEntity(car.getModel()))
             .owner(UserHttpRestEntity.fromEntity(car.getOwner()))
             .purchase(PurchaseHttpRestEntity.fromEntity(car.getPurchase()))
@@ -50,7 +48,6 @@ public class CarHttpRestEntity {
         return Car.builder()
             .id(this.id)
             .carLicense(this.carLicense)
-            .brand(this.brand != null ? this.brand.toEntity() : null)
             .model(this.model != null ? this.model.toEntity() : null)
             .owner(this.owner != null ? this.owner.toEntity() : null)
             .purchase(this.purchase != null ? this.purchase.toEntity() : null)

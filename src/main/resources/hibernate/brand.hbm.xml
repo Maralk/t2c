@@ -9,7 +9,7 @@
         </id>
         <property name="name" type="string"/>
         <set name="models" table="models" inverse="true">
-            <key column="model_id"/>
+            <key column="id"/>
             <one-to-many class="com.proof.t2c.domain.entities.Model"/>
         </set>
         <property name="createdAt" type="timestamp"/>

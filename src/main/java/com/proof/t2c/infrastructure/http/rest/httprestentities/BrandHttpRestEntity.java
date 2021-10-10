@@ -29,6 +29,8 @@ public class BrandHttpRestEntity {
         return BrandHttpRestEntity.builder()
             .id(brand.getId())
             .name(brand.getName())
+            .createdAt(brand.getCreatedAt())
+            .updatedAt(brand.getUpdatedAt())
             .build();
     }
 

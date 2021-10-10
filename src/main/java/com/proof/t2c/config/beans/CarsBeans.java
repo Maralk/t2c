@@ -13,9 +13,10 @@ public class CarsBeans {
     @Bean
     @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
     public CreateCarUseCase createCarUseCase(
-        CreateCarUseCase.CarRepository carRepository
+        CreateCarUseCase.CarRepository carRepository,
+        CreateCarUseCase.PurchaseRepository purchaseRepository
     ) {
-        return new CreateCarUseCase(carRepository);
+        return new CreateCarUseCase(carRepository, purchaseRepository);
     }
 
     @Bean

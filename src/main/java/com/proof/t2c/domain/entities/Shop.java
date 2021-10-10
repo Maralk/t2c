@@ -21,7 +21,7 @@ public class Shop extends Base {
 
     private String town;
 
-    private Integer zip;
+    private String zip;
 
     private String address;
 

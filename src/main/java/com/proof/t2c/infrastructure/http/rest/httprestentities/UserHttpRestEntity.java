@@ -23,7 +23,7 @@ public class UserHttpRestEntity {
     private String country;
     private String province;
     private String town;
-    private Integer zip;
+    private String zip;
     private String address;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Europe/Madrid")
     private Date createdAt;

@@ -90,7 +90,6 @@ public class GetAggregateAccountingUseCase implements UseCase<GetAggregateAccoun
     // @formatter:off
     @Getter @Setter @Builder @Value
     public static class InputPort implements UseCase.InputPort {
-//        private final Integer id;
     }
 
     @Getter @Setter @Builder @Value
