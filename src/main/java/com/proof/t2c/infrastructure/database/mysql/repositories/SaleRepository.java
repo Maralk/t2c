@@ -2,6 +2,7 @@ package com.proof.t2c.infrastructure.database.mysql.repositories;
 
 import com.proof.t2c.domain.entities.Sale;
 import com.proof.t2c.domain.usecases.aggregates.GetAggregateAccountingUseCase;
+import com.proof.t2c.domain.usecases.sales.CreateSaleUseCase;
 import com.proof.t2c.domain.usecases.sales.UpdateSaleUseCase;
 import com.proof.t2c.infrastructure.database.mysql.repositories.jpa.JpaSaleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import java.util.Optional;
 @Repository
 @Transactional
 public class SaleRepository extends BaseRepository implements
+    CreateSaleUseCase.SaleRepository,
     UpdateSaleUseCase.SaleRepository,
     GetAggregateAccountingUseCase.SaleRepository {
 

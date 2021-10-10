@@ -16,7 +16,7 @@ public class ReducedCarHttpRestEntity {
     // @formatter:off
     private Integer id;
     private String carLicense;
-    private Boolean sold;
+    private Boolean isSold;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Europe/Madrid")
     private Date createdAt;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Europe/Madrid")
@@ -30,7 +30,7 @@ public class ReducedCarHttpRestEntity {
         return ReducedCarHttpRestEntity.builder()
             .id(car.getId())
             .carLicense(car.getCarLicense())
-            .sold(car.getSold())
+            .isSold(car.getIsSold())
             .createdAt(car.getCreatedAt())
             .updatedAt(car.getUpdatedAt())
             .build();
@@ -40,7 +40,7 @@ public class ReducedCarHttpRestEntity {
         return Car.builder()
             .id(this.id)
             .carLicense(this.carLicense)
-            .sold(this.sold)
+            .isSold(this.isSold)
             .createdAt(this.createdAt)
             .updatedAt(this.updatedAt)
             .build();

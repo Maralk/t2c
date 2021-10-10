@@ -27,7 +27,7 @@ public class UpdateCarUseCase implements UseCase<UpdateCarUseCase.InputPort, Upd
     @Override
     public OutputPort execute(InputPort inputPort) {
         Car car = this.carRepository.getCarById(inputPort.getId());
-        if (car.getSold()) {
+        if (car.getIsSold()) {
             throw new T2cException("El vehículo no puede modificar porque ya ha sido vendido.");
         }
         car.setCarLicense(inputPort.getData().getCarLicense());

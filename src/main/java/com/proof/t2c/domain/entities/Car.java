@@ -22,13 +22,13 @@ public class Car extends Base {
 
     private Sale sale;
 
-    private Boolean sold;
+    private Boolean isSold;
 
     private Date createdAt;
 
     private Date updatedAt;
 
-    public Boolean getSold() {
+    public Boolean getIsSold() {
         return this.sale != null;
     }
 }

@@ -20,7 +20,7 @@ public class CarHttpRestEntity {
     private UserHttpRestEntity owner;
     private PurchaseHttpRestEntity purchase;
     private SaleHttpRestEntity sale;
-    private Boolean sold;
+    private Boolean isSold;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Europe/Madrid")
     private Date createdAt;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Europe/Madrid")
@@ -38,7 +38,7 @@ public class CarHttpRestEntity {
             .owner(UserHttpRestEntity.fromEntity(car.getOwner()))
             .purchase(PurchaseHttpRestEntity.fromEntity(car.getPurchase()))
             .sale(SaleHttpRestEntity.fromEntity(car.getSale()))
-            .sold(car.getSold())
+            .isSold(car.getIsSold())
             .createdAt(car.getCreatedAt())
             .updatedAt(car.getUpdatedAt())
             .build();
@@ -52,7 +52,7 @@ public class CarHttpRestEntity {
             .owner(this.owner != null ? this.owner.toEntity() : null)
             .purchase(this.purchase != null ? this.purchase.toEntity() : null)
             .sale(this.sale != null ? this.sale.toEntity() : null)
-            .sold(this.sold)
+            .isSold(this.isSold)
             .createdAt(this.createdAt)
             .updatedAt(this.updatedAt)
             .build();

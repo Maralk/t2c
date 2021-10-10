@@ -40,8 +40,12 @@ public class GetAggregateAccountingUseCase implements UseCase<GetAggregateAccoun
         List<Purchase> purchases = this.purchaseRepository.getPurchases();
         List<Sale> sales = this.saleRepository.getSales();
 
-        Float expenses = purchases.stream().map(Purchase::getPrice).reduce(0f, Float::sum);
-        Float incomes = sales.stream().map(Sale::getPrice).reduce(0f, Float::sum);
+        Float expenses = purchases.stream()
+            .map(Purchase::getPrice)
+            .reduce(0f, Float::sum);
+        Float incomes = sales.stream()
+            .map(Sale::getPrice)
+            .reduce(0f, Float::sum);
         Float profits = incomes - expenses;
 
         List<AggregateShopAccounting> details = this.calculateAggregateShopAccountings(purchases, sales);
@@ -60,8 +64,14 @@ public class GetAggregateAccountingUseCase implements UseCase<GetAggregateAccoun
         List<Shop> shops = this.shopRepository.getShops();
         List<AggregateShopAccounting> details = new ArrayList<>();
         for (Shop shop : shops) {
-            Float shopExpenses = purchases.stream().filter(purchase -> shop.getId().equals(NullSafeHelper.optional(() -> purchase.getNewOwner().getShop().getId(), null))).map(Purchase::getPrice).reduce(0f, Float::sum);
-            Float shopIncomes = sales.stream().filter(sale -> shop.getId().equals(NullSafeHelper.optional(() -> sale.getPreviousOwner().getShop().getId(), null))).map(Sale::getPrice).reduce(0f, Float::sum);
+            Float shopExpenses = purchases.stream()
+                .filter(purchase -> shop.getId().equals(NullSafeHelper.optional(() -> purchase.getNewOwner().getShop().getId(), null)))
+                .map(Purchase::getPrice)
+                .reduce(0f, Float::sum);
+            Float shopIncomes = sales.stream()
+                .filter(sale -> shop.getId().equals(NullSafeHelper.optional(() -> sale.getPreviousOwner().getShop().getId(), null)))
+                .map(Sale::getPrice)
+                .reduce(0f, Float::sum);
 
             Float shopProfits = shopIncomes - shopExpenses;
             AggregateShopAccounting aggregateShopAccounting = AggregateShopAccounting.builder()
