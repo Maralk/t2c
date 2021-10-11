@@ -50,7 +50,6 @@ _Para probar los endpoints de la API podemos hacer uso de [la documentación de 
 * [Spring Boot](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/) - El framework usado
 * [Maven](https://maven.apache.org/) - Manejador de dependencias
 * [JPA](https://spring.io/projects/spring-data-jpa) - Persistencia de datos
-* [Lombok](https://projectlombok.org/download) - Librería Java para poder usar sus anotaciones
 * [Swagger](https://swagger.io/docs/) - Usado para generar la documentación de la API
 
 
